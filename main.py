@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.metrics import dp
-from kivy.graphics.vertex_instructions import Line, Rectangle
+from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics import Color
 from kivy.properties import StringProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -107,5 +107,17 @@ class CanvasExample4(Widget):
         
         x += inc
         self.rect.pos = (x, y)
+
+class CanvasExample5(Widget):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.ball_size = dp(50)
+        with self.canvas:
+            self.ball = Ellipse(pos = (100,100), size = (self.ball_size, self.ball_size))
+
+    def on_size(self, *args):
+        print("on size: " + str(self.width) + ", " + str(self.height)) 
+        self.ball.pos = (self.center_x - self.ball_size/2, self.center_y - self.ball_size/2)
+
 
 TheLabApp().run()
