@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.metrics import dp
-from kivy.graphics.vertex_instructions import Line
+from kivy.graphics.vertex_instructions import Line, Rectangle
 from kivy.graphics import Color
 from kivy.properties import StringProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -93,5 +93,19 @@ class CanvasExample4(Widget):
             Line(points = (100, 100, 400, 500), width = 2)
             Color(0 , 1, 0)
             Line(circle = (100, 100, 100), width = 2)
+            Line(rectangle = (700, 500, 150, 100), width = 2)
+            self.rect = Rectangle(pos = (400, 400), size = (60,40))
+    
+    def on_button_a_click(self):
+        x, y = self.rect.pos
+        w,h = self.rect.size
+
+        inc = dp(10)
+        diff = self.width - (x+w)
+        if(diff < inc):
+            inc = diff
+        
+        x += inc
+        self.rect.pos = (x, y)
 
 TheLabApp().run()

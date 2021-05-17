@@ -2,6 +2,11 @@ CanvasExample4:
 
 #:set s dp(150)
 
+<CanvasExample4>:
+    Button:
+        text: "Move Rectangle"
+        on_press: root.on_button_a_click()
+
 <CanvasExample3>:
     canvas:
         Color:
@@ -104,7 +109,7 @@ CanvasExample4:
     GridLayoutExample:
 
 <ScrollViewExample@ScrollView>:
-    StackLayoutExample: 
+    StackLayoutExample:
         size_hint: 1, None
         height: self.minimum_height
 
