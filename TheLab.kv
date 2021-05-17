@@ -1,0 +1,140 @@
+ImagesExample:
+
+<ImagesExample@GridLayout>:
+    cols: 3
+    Image:
+        source: "images/cake.jpg"
+    Image:
+        source: "images/cake.jpg"
+        allow_stretch: True
+    Image:
+        source: "images/cake.jpg"
+        allow_stretch: True
+        keep_ratio: False
+
+<WidgetsExample>:
+    cols: 3
+    ToggleButton:
+        text: "Off"
+        size_hint: None, 1
+        width: "100dp"
+        on_state: root.on_toggle_button_state(self)
+    Button:
+        text: "Click Me"
+        on_press: root.on_button_click()
+        disabled: not root.enabled
+    Label:
+        text: root.my_text
+        font_name: "fonts/Lcd.ttf"
+        font_size: "80dp"
+        color: 1, .5, 1, 1
+    Switch:
+        id: switch
+        on_active: root.on_switch_active(self)
+        active: True
+        size_hint: None, 1
+        width: "100dp"
+    Slider:
+        id: slider
+        disabled: not switch.active
+        orientation: "vertical"
+        min: 0
+        max: 100
+        value: 23
+        on_value: root.on_slider_value(self)
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: str(int(slider.value))
+        ProgressBar:
+            max: 100
+            value: slider.value
+    TextInput:
+        id: text_inp
+        size_hint: None, 1
+        width: "100dp"
+        text: "Text Here"
+        multiline: False
+        on_text_validate: root.on_text_validate(self)
+    Label:
+        text: root.text_input_str
+
+
+<PageLayoutExample@PageLayout>:
+    MainWidget:
+    BoxLayoutExample:
+    AnchorLayoutExample:
+    GridLayoutExample:
+
+<ScrollViewExample@ScrollView>:
+    StackLayoutExample: 
+        size_hint: 1, None
+        height: self.minimum_height
+
+<StackLayoutExample>:
+    # orientation: "rl-bt"
+    # padding: ("20dp", "20dp", "20dp", "20dp")
+    # spacing: "20dp", "20dp"
+    #Button:
+    #    text: "A"
+    #    size_hint: .2, .2
+
+<GridLayoutExample>:
+    rows: 2
+    Button:
+        text: "A"
+    BoxLayoutExample:
+    Button:
+        text: "C"
+    Button:
+        text: "D"
+    Button:
+        text: "E"
+    Button:
+        text: "F"
+
+<AnchorLayoutExample>:
+    anchor_x: "center"
+    anchor_y: "top"
+    BoxLayout:
+        size_hint: 0.2, 0.2
+        Button:
+            text: "A"
+        Button:
+            text: "B"
+
+<BoxLayoutExample>:
+    orientation: "horizontal"
+    Button:
+        text: "A"
+        size: "100dp", "80dp"
+        size_hint: 0.5, 0.5
+        pos_hint: { "center_y": 0.5}
+
+    BoxLayout:
+        spacing: "10dp"
+        orientation: "vertical"
+        Button:
+            text: "B1"
+        Button:
+            text: "B1"
+        Button:
+            text: "B1"
+        Button:
+            text: "B1"
+
+    Label:
+        text: "C"
+
+<MainWidget>:
+    Button:
+        text: "Hello"
+        size: "100dp", "80dp"
+        pos: "100dp", "200dp"
+        color: 0, 0, 1, 1
+    Label:
+        text: "Hello2"
+        size: "100dp", "80dp"
+        pos: "0dp", "200dp"
+        color: 1, 0, 0, 1
+
