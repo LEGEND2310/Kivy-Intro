@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.metrics import dp
+from kivy.properties import Clock
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
 from kivy.graphics import Color
 from kivy.properties import StringProperty, BooleanProperty
@@ -112,12 +113,26 @@ class CanvasExample5(Widget):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.ball_size = dp(50)
+        self.vx = 3
+        self.vy = 4
         with self.canvas:
             self.ball = Ellipse(pos = (100,100), size = (self.ball_size, self.ball_size))
+        Clock.schedule_interval(self.update, 1/60)
 
     def on_size(self, *args):
         print("on size: " + str(self.width) + ", " + str(self.height)) 
         self.ball.pos = (self.center_x - self.ball_size/2, self.center_y - self.ball_size/2)
+
+    def update(self, dt):
+        # print("update")
+        x, y = self.ball.pos
+
+        if(x + self.ball_size >= self.width or x <= 0):
+            self.vx *= -1
+        if(y + self.ball_size >= self.height or y <= 0):
+            self.vy *= -1
+
+        self.ball.pos = (x + self.vx, y + self.vy)
 
 
 TheLabApp().run()
